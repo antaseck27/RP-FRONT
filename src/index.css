@@ -1,0 +1,273 @@
+@import "tailwindcss";
+
+
+* {
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, sans-serif;
+}
+.body {
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  background-color: #f9fafb important;
+}
+.title {
+  font-size: 23px;
+  font-weight: 600;
+}
+h1{
+color: #494C4F !important;
+}
+
+/* src/index.css */
+
+/* Style pour le bouton hamburger */
+.sidebar-hamburger {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 43px;
+  height: 43px;
+  background-color: transparent;
+  /* border: 2px solid #fff; */
+  /* border-radius: 50%; */
+  transition: all 0.3s ease;
+}
+
+.sidebar-hamburger:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* Effet au survol */
+}
+
+.sidebar-hamburger svg {
+  transition: transform 0.3s ease;
+  transform: rotate(0deg); /* Réinitialiser la rotation à 0 */
+}
+
+.sidebar-hamburger.open svg {
+  transform: rotate(180deg); /* Animation pour faire tourner l'icône en croix */
+}
+
+
+
+
+
+
+
+/* Styles globaux */
+
+/* Enlève le fond bleu clair des inputs */
+input,
+textarea,
+select {
+  background-color: transparent; /* fond transparent */
+  -webkit-box-shadow: 0 0 0px 1000px white inset; /* supprime le fond auto-fill sur Chrome */
+  box-shadow: none; /* supprime ombres par défaut */
+}
+
+/* Pour Chrome / Safari : supprime le fond bleu auto-fill */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+  -webkit-text-fill-color: #000 !important;
+  background-color: transparent !important;
+}
+
+/* Focus style léger */
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #494C4F; /* ou ta couleur préférée */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar {
+ background-color: rgba(73, 76, 79, 0.7); /* 70% opaque */
+  backdrop-filter: blur(10px);
+
+/* backdrop-filter: blur(10px);  */
+
+}
+header {
+ background-color: #ffffff;
+ border: none;
+ padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.header {
+  background: rgba(0,0,0,0.5); /* noir semi-transparent */
+  padding: 16px;
+  z-index: 50; /* au-dessus du sidebar */
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Lien normal */
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 20px;
+  color: #d1d5db; /* gray-300 */
+  text-decoration: none;
+  font-size: 20px;
+  transition: all 0.25s ease;
+}
+
+/* Hover */
+/* .sidebar-link:hover {
+  background: transparent;
+  color: #ffffff;
+  font-weight: 600;
+  width: 350px;
+  margin-left: -20px; 
+} */
+
+/* Lien actif */
+.sidebar-link.active {
+  background-color: rgb(239, 235, 235);
+  color: #494C4F;
+  width: 332px;
+  margin-left: -10px;
+}
+
+
+
+
+ .sidebar {
+  /* width: 322px;
+  height: 100vh; */
+
+  /* background:
+    linear-gradient(
+      rgba(73, 76, 79, 0.8),
+      rgba(73, 76, 79, 0.8)
+    ),
+    url("assets/sidebar-bg.jpg")
+      center / cover no-repeat; */
+      background-image: url("assets/div.left.png");
+
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0;
+  color: #e5e7eb;
+}
+
+/* Logo */
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 20px 30px;
+  font-weight: 700;
+  color: white;
+}
+
+.logo-icon {
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.logo-text {
+  
+  letter-spacing: 1px;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+/* Section */
+.sidebar-section {
+  padding: 0 24px;
+  font-size: 16px;
+  margin-bottom: 12px;
+  opacity: 0.8;
+  color: white;
+}
+
+/* Nav */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Links */
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 24px;
+  width: 100%;
+  color: #e5e7eb;
+  text-decoration: none;
+}
+
+.sidebar-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Active */
+.sidebar-link.active {
+  background: #F0F0F0;
+  color: #494c4f;
+  ;
+}
+
+/* User bottom */
+.sidebar-user {
+  margin-top: auto;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.user-name {
+  font-size: 14px;
+  color: white;
+}
+
+.user-status {
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background: #22c55e;
+  border-radius: 50%;
+}
+/* index.css ou App.css */
+.login {
+  position: relative; /* nécessaire pour overlay et contenu */
+  min-height: 100vh; /* prendre toute la hauteur de l'écran */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('assets/Se_connecter.png'); /* si dans public/assets */
+  background-size: cover; /* couvre tout l'écran */
+  background-position: center; /* centré */
+  background-repeat: no-repeat;
+}
+.login h1{
+    color: #eef0f3 !important;
+
+}
+
+button{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #494C4F !important;
+}
