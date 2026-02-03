@@ -77,9 +77,9 @@ const Sidebar = ({ userData, open, setOpen }) => {
         {/* USER DESKTOP */}
         <div className="sidebar-user hidden md:flex mt-auto items-center gap-3">
           <img
-            src={userData?.avatar || ""}
+            src="https://i.pinimg.com/1200x/9b/97/47/9b97474ef0060930a697821114accd7d.jpg"
             alt="user"
-            className="user-avatar w-10 h-10 rounded-full bg-gray-200 object-cover"
+            className="user-avatar w-12 h-12 rounded-full bg-gray-200 object-cover"
           />
           <div>
             <p className="user-name">{userData?.name || "Utilisateur"}</p>

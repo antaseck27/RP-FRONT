@@ -99,10 +99,11 @@ const Header = ({ userData, toggleSidebar }) => {
 
         {/* PHOTO DE PROFIL – DESKTOP SEULEMENT */}
         <img
-        src=""
+        src="https://i.pinimg.com/1200x/9b/97/47/9b97474ef0060930a697821114accd7d.jpg"
+        alt="user"
           // src={userData?.avatar || "https://i.pravatar.cc/40"}
-          alt="Profil"
-          className="w-9 h-9 rounded-full object-cover cursor-pointer bg-gray-200"
+          className="w-12 h-12 rounded-full object-cover cursor-pointer
+          "
         />
 
         {/* Déconnexion */}
