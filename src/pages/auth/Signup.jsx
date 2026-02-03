@@ -71,14 +71,12 @@ const Signup = () => {
         return;
       }
 
-      if (data.token) {
-        localStorage.setItem("authToken", data.token);
-      }
-      if (data.user) {
-        localStorage.setItem("user", JSON.stringify(data.user));
-      }
-
-      navigate("/dashboard");
+      navigate("/login", {
+        state: {
+          signupSuccess: true,
+          email,
+        },
+      });
     } catch (err) {
       console.error(err);
       setError("Erreur réseau, veuillez réessayer plus tard");

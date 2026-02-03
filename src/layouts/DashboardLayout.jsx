@@ -55,16 +55,67 @@ const DashboardLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
 
-  const userData = {
-    name: "Anta Seck",
-    avatar: "https://i.pravatar.cc/35",
-    status: "en ligne",
+  const buildUserData = () => {
+    let raw = null;
+    try {
+      raw = JSON.parse(localStorage.getItem("user")) || null;
+    } catch {
+      raw = null;
+    }
+
+    if (!raw) return null;
+
+    const seed = raw.email || raw.name || "user";
+    let hash = 0;
+    for (let i = 0; i < seed.length; i += 1) {
+      hash = seed.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    const colors = [
+      "#ef4444",
+      "#f97316",
+      "#f59e0b",
+      "#84cc16",
+      "#22c55e",
+      "#14b8a6",
+      "#06b6d4",
+      "#3b82f6",
+      "#6366f1",
+      "#8b5cf6",
+      "#ec4899",
+      "#f43f5e",
+    ];
+    const color = colors[Math.abs(hash) % colors.length];
+
+    const parts = (raw.name || "Utilisateur").trim().split(" ");
+    const first = parts[0]?.[0] || "U";
+    const last = parts[1]?.[0] || "";
+    const initials = `${first}${last}`.toUpperCase();
+
+    return {
+      ...raw,
+      initials,
+      color,
+      status: raw.status || "en ligne",
+    };
   };
+
+  const [userData, setUserData] = useState(buildUserData);
 
   useEffect(() => {
     const handleResize = () => setIsDesktop(window.innerWidth >= 768);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    const handleStorage = (event) => {
+      if (event.key === "user") {
+        setUserData(buildUserData());
+      }
+    };
+
+    window.addEventListener("storage", handleStorage);
+    return () => window.removeEventListener("storage", handleStorage);
   }, []);
 
   return (

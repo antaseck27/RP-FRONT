@@ -2,7 +2,7 @@
 
 
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaHotel } from "react-icons/fa";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -13,12 +13,22 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     if (localStorage.getItem("authToken")) {
       navigate("/dashboard");
+      return;
     }
-  }, [navigate]);
+
+    if (location.state?.signupSuccess) {
+      setErrorMessage("Inscription reussie. Connectez-vous.");
+      if (location.state?.email) {
+        setEmail(location.state.email);
+      }
+      navigate(location.pathname, { replace: true, state: null });
+    }
+  }, [location.pathname, location.state, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

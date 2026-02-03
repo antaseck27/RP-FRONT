@@ -98,13 +98,13 @@ const Header = ({ userData, toggleSidebar }) => {
         </div>
 
         {/* PHOTO DE PROFIL – DESKTOP SEULEMENT */}
-        <img
-        src="https://i.pinimg.com/1200x/9b/97/47/9b97474ef0060930a697821114accd7d.jpg"
-        alt="user"
-          // src={userData?.avatar || "https://i.pravatar.cc/40"}
-          className="w-12 h-12 rounded-full object-cover cursor-pointer
-          "
-        />
+        <div
+          className="w-12 h-12 rounded-full flex items-center justify-center text-white font-semibold text-sm cursor-pointer"
+          style={{ backgroundColor: userData?.color || "#64748b" }}
+          title={userData?.name || "Utilisateur"}
+        >
+          {userData?.initials || "U"}
+        </div>
 
         {/* Déconnexion */}
         <button
