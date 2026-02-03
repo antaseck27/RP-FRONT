@@ -179,7 +179,7 @@ const ListHotels = () => {
   return (
     <div className="p-6">
       {/* Header */}
-      <div className="fixed top-15 left-0 right-0 md:left-[322px] p-6 shadow-md bg-white flex justify-between items-center rounded-lg">
+      <div className="fixed top-15 left-0 right-0 md:left-[322px] p-6  p-10 shadow-md bg-white flex justify-between items-center rounded-lg">
         <h2 className="text-2xl font-semibold text-gray-800">
           Hôtels ({Array.isArray(hotels) ? hotels.length : 0})
         </h2>
