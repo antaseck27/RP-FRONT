@@ -1,66 +1,129 @@
 
-// // export default Header;
 
-// import { FaBars, FaBell, FaSignOutAlt } from "react-icons/fa";
-// import { useLocation } from "react-router-dom";
 
-// const Header = ({ userData, toggleSidebar }) => {
+
+
+// import { Menu, Bell, LogOut, Search } from "lucide-react";
+// import { useLocation, useNavigate } from "react-router-dom";
+// import { useState, useEffect, useRef } from "react";
+
+// const pageTitles = {
+//   "/dashboard": "Dashboard",
+//   "/dashboard/hotels": "Liste des hôtels",
+// };
+
+// const Header = ({ userData }) => {
 //   const location = useLocation();
+//   const navigate = useNavigate();
+//   const notifRef = useRef(null);
 
-//   // Détermination dynamique du titre
-//   const getTitle = (pathname) => {
-//     if (pathname === "/") return "Dashboard";
-//     if (pathname.startsWith("/dashboard/hotels")) return "Liste des hôtels";
-//     return "";
+//   const [title, setTitle] = useState("");
+//   const [searchQuery, setSearchQuery] = useState("");
+//   const [notifOpen, setNotifOpen] = useState(false);
+//   const [unreadNotifications] = useState(3);
+
+//   useEffect(() => {
+//     setTitle(pageTitles[location.pathname] || "");
+//   }, [location.pathname]);
+
+//   useEffect(() => {
+//     const handleClickOutside = (e) => {
+//       if (notifRef.current && !notifRef.current.contains(e.target)) {
+//         setNotifOpen(false);
+//       }
+//     };
+//     document.addEventListener("mousedown", handleClickOutside);
+//     return () =>
+//       document.removeEventListener("mousedown", handleClickOutside);
+//   }, []);
+
+//   const handleLogout = () => {
+//     localStorage.removeItem("authToken");
+//     navigate("/login");
 //   };
 
-//   const title = getTitle(location.pathname);
-
 //   return (
-//     <header
-//       className="
-       
-//         fixed top-0 right-0 left-0 md:left-[322px] h-16 
-//         h-18 bg-white border-b shadow
-//         flex items-center justify-between
-//         px-4 md:px-6 z-30
-//       "
-//     >
-//       {/* Hamburger mobile */}
-//       <button
-//         className="md:hidden text-xl text-gray-700"
-//         onClick={toggleSidebar}
-//       >
-//         <FaBars />
-//       </button>
+//     <header className="fixed top-0 left-0 right-0 md:left-[322px] h-16 bg-white border-b shadow-sm flex items-center justify-between px-4 md:px-6 z-30">
 
-//       {/* TITRE DYNAMIQUE */}
-//       <h1 className="text-lg md:text-xl font-semibold text-gray-800">
-//         {title}
-//       </h1>
+//       {/* LEFT */}
+//       <div className="flex items-center gap-4 min-w-0">
+//         <button className="md:hidden text-gray-700">
+//           <Menu size={22} strokeWidth={1.8} />
+//         </button>
 
-//       {/* Actions */}
-//       <div className="flex items-center gap-4">
-//         <FaBell className="text-gray-600 cursor-pointer" />
+//         <h1 className="text-lg md:text-xl font-semibold text-gray-800 truncate">
+//           {title}
+//         </h1>
+//       </div>
 
-//         <img
-//           src={userData?.avatar || "https://i.pravatar.cc/40"}
-//           className="w-9 h-9 rounded-full object-cover"
-//           alt="user"
+//       {/* RIGHT – DESKTOP ONLY */}
+//       <div className="hidden md:flex items-center gap-4">
+
+//         {/* Recherche */}
+//         <input
+//           type="text"
+//           placeholder="Recherche..."
+//           value={searchQuery}
+//           onChange={(e) => setSearchQuery(e.target.value)}
+//           className="w-[180px] h-10 px-3 rounded-2xl text-gray-700 bg-gray-200 focus:outline-none"
 //         />
 
-//         <FaSignOutAlt className="text-gray-600 cursor-pointer hover:text-red-500" />
+//         {/* Notifications */}
+//         <div className="relative" ref={notifRef}>
+//           <button
+//             onClick={() => setNotifOpen(!notifOpen)}
+//             className="but1 relative text-gray-600 hover:text-gray-800 transition"
+//           >
+//             <Bell size={22} strokeWidth={1.8} />
+//             {unreadNotifications > 0 && (
+//               <span className="but1 absolute -top-1 -right-1 bg-red-500 text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">
+//                 {unreadNotifications}
+//               </span>
+//             )}
+//           </button>
+
+//           {notifOpen && (
+//             <div className="absolute right-0 mt-4 w-72 bg-white border border-gray-200 shadow-xl rounded-xl overflow-hidden z-50">
+//               <div className="px-4 py-3 border-b text-sm font-semibold">
+//                 Notifications
+//               </div>
+//               <div className="px-4 py-3 text-sm hover:bg-gray-50">
+//                 Nouvelle réservation
+//               </div>
+//               <div className="px-4 py-3 text-sm hover:bg-gray-50">
+//                 Message client
+//               </div>
+//             </div>
+//           )}
+//         </div>
+
+//         {/* PHOTO DE PROFIL – DESKTOP SEULEMENT */}
+//         <img
+//         src="https://i.pinimg.com/736x/b0/19/f6/b019f6c43757fcb7526a9457eddb8c31.jpg"
+//           // src={userData?.avatar || "https://i.pravatar.cc/40"}
+//           alt="Profil"
+//           className="w-9 h-9 rounded-full object-cover cursor-pointer"
+//         />
+
+//         {/* Déconnexion */}
+//         <button
+//           onClick={handleLogout}
+//           className="but1 text-gray-600 hover:text-red-500 transition"
+//         >
+//           <LogOut size={22} strokeWidth={1.8} />
+//         </button>
 //       </div>
 //     </header>
 //   );
 // };
 
+// export default Header;
 
-import { FaBars, FaBell, FaSearch, FaSignOutAlt } from "react-icons/fa";
+
+
+import { Menu, Bell, LogOut } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { auth } from "../firebase-config";
-import { signOut } from "firebase/auth";
+import { useState, useEffect, useRef } from "react";
 
 const pageTitles = {
   "/dashboard": "Dashboard",
@@ -70,133 +133,107 @@ const pageTitles = {
 const Header = ({ userData, toggleSidebar }) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [title, setTitle] = useState(pageTitles[location.pathname] || "");
-  const [unreadNotifications, setUnreadNotifications] = useState(0);
-  const [searchQuery, setSearchQuery] = useState(""); // Etat pour la recherche
+  const notifRef = useRef(null);
 
-  // Mettre à jour le titre à chaque changement de pathname
+  const [title, setTitle] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [notifOpen, setNotifOpen] = useState(false);
+  const [unreadNotifications] = useState(3);
+
   useEffect(() => {
     setTitle(pageTitles[location.pathname] || "");
   }, [location.pathname]);
 
-  // Fonction de déconnexion
-  const handleLogout = async () => {
-    try {
-      await signOut(auth);
-      navigate("/login");
-    } catch (error) {
-      console.error("Erreur de déconnexion: ", error.message);
-    }
-  };
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (notifRef.current && !notifRef.current.contains(e.target)) {
+        setNotifOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () =>
+      document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
-  // Simuler l'ajout d'une notification
-  const handleNewNotification = () => {
-    setUnreadNotifications(prev => prev + 1);
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("user");
+    navigate("/login");
   };
 
   return (
-    <header className="fixed top-0 right-0 left-0 md:left-[322px] h-16 bg-white border-b shadow flex items-center justify-between px-4 md:px-6 z-30">
-      {/* Hamburger mobile */}
-      <button className="md:hidden text-xl" onClick={toggleSidebar}>
-        <FaBars />
-      </button>
+    <header className="fixed top-0 left-0 right-0 md:left-[322px] h-16 bg-white border-b shadow-sm flex items-center justify-between px-4 md:px-6 z-30">
 
-      {/* Titre dynamique */}
-      <h1 className="text-lg md:text-xl font-semibold text-gray-800">{title}</h1>
+      {/* LEFT */}
+      <div className="flex items-center gap-4 min-w-0">
+        <button className="md:hidden text-gray-700" onClick={toggleSidebar}>
+          <Menu size={22} strokeWidth={1.8} />
+        </button>
 
-      <div className="flex items-center gap-4">
+        <h1 className="text-lg md:text-xl font-semibold text-gray-800 truncate">
+          {title}
+        </h1>
+      </div>
 
-        {/* Barre de recherche */}
+      {/* RIGHT – DESKTOP ONLY */}
+      <div className="hidden md:flex items-center gap-4">
+
+        {/* Recherche */}
         <input
           type="text"
           placeholder="Recherche..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-[180px] h-[40px] px-3 rounded-2xl text-gray-700 bg-gray-200 focus:outline-none"
+          className="w-[180px] h-10 px-3 rounded-2xl text-gray-700 bg-gray-200 focus:outline-none"
         />
-        
-        {/* Notification */}
-        <button
-          className="relative text-gray-600 cursor-pointer"
-          onClick={handleNewNotification}
-        >
-          <FaBell className="text-gray-600" />
-          {unreadNotifications > 0 && (
-            <span className="absolute top-0 right-0 bg-red-500 text-white rounded-full text-xs px-2">
-              {unreadNotifications}
-            </span>
+
+        {/* Notifications */}
+        <div className="relative" ref={notifRef}>
+          <button
+            onClick={() => setNotifOpen(!notifOpen)}
+            className="but1 relative text-gray-600 hover:text-gray-800 transition"
+          >
+            <Bell size={22} strokeWidth={1.8} />
+            {unreadNotifications > 0 && (
+              <span className="but1 absolute -top-1 -right-1 bg-red-500 text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">
+                {unreadNotifications}
+              </span>
+            )}
+          </button>
+
+          {notifOpen && (
+            <div className="absolute right-0 mt-4 w-72 bg-white border border-gray-200 shadow-xl rounded-xl overflow-hidden z-50">
+              <div className="px-4 py-3 border-b text-sm font-semibold">
+                Notifications
+              </div>
+              <div className="px-4 py-3 text-sm hover:bg-gray-50">
+                Nouvelle réservation
+              </div>
+              <div className="px-4 py-3 text-sm hover:bg-gray-50">
+                Message client
+              </div>
+            </div>
           )}
-        </button>
+        </div>
 
-        
-
-        {/* Avatar utilisateur */}
+        {/* PHOTO DE PROFIL – DESKTOP SEULEMENT */}
         <img
-          src={userData?.avatar || "https://i.pravatar.cc/35"}
-          className="w-9 h-9 rounded-full"
-          alt="user"
+        src="https://i.pinimg.com/736x/b0/19/f6/b019f6c43757fcb7526a9457eddb8c31.jpg"
+          // src={userData?.avatar || "https://i.pravatar.cc/40"}
+          alt="Profil"
+          className="w-9 h-9 rounded-full object-cover cursor-pointer"
         />
 
-        {/* Bouton de déconnexion */}
-        <FaSignOutAlt
-          className="text-gray-600 cursor-pointer hover:text-red-500"
+        {/* Déconnexion */}
+        <button
           onClick={handleLogout}
-        />
+          className="but1 text-gray-600 hover:text-red-500 transition"
+        >
+          <LogOut size={22} strokeWidth={1.8} />
+        </button>
       </div>
     </header>
   );
 };
 
 export default Header;
-
-
-
-// // export default Header;
-
-
-// import { FaBars, FaBell, FaSignOutAlt } from "react-icons/fa";
-// import { useLocation } from "react-router-dom";
-// import { useEffect, useState } from "react";
-
-// const pageTitles = {
-//   "/dashboard": "Dashboard",
-//   "/dashboard/hotels": "Liste des hôtels",
-// };
-
-// const Header = ({ userData, toggleSidebar }) => {
-//   const location = useLocation();
-//   const [title, setTitle] = useState(pageTitles[location.pathname] || "");
-
-//   // Mettre à jour le titre à chaque changement de pathname
-//   useEffect(() => {
-//     setTitle(pageTitles[location.pathname] || "");
-//   }, [location.pathname]);
-
-//   return (
-//     <header
-//       className="fixed top-0 right-0 left-0 md:left-[322px] h-16
-//       bg-white border-b shadow flex items-center justify-between
-//       px-4 md:px-6 z-30"
-//     >
-//       {/* Hamburger mobile */}
-//       <button className="md:hidden text-xl" onClick={toggleSidebar}>
-//         <FaBars />
-//       </button>
-
-//       {/* Titre dynamique */}
-//       <h1 className="text-lg md:text-xl font-semibold text-gray-800">{title}</h1>
-
-//       <div className="flex items-center gap-4">
-//         <FaBell className="text-gray-600 cursor-pointer" />
-//         <img
-//           src={userData?.avatar || "https://i.pravatar.cc/35"}
-//           className="w-9 h-9 rounded-full"
-//           alt="user"
-//         />
-//         <FaSignOutAlt className="text-gray-600 cursor-pointer hover:text-red-500" />
-//       </div>
-//     </header>
-//   );
-// };
-
-// export default Header;

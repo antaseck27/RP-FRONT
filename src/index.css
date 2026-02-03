@@ -17,6 +17,27 @@
 h1{
 color: #494C4F !important;
 }
+.butt{
+  color: #494c4f !important;
+  background-color: transparent !important;
+  border: 2px solid #494c4f !important;
+  border-radius: 8px !important;
+  padding: 10px 20px !important;
+    
+}
+.but1{
+  background-color: #ffffff !important;
+  border: none !important;
+ 
+}
+
+.welcome-section {
+  background-color: #ffffff !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  
+
+} 
 
 /* src/index.css */
 
@@ -93,7 +114,7 @@ header {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 .header {
-  background: rgba(0,0,0,0.5); /* noir semi-transparent */
+  /* background: rgba(0,0,0,0.5);  */
   padding: 16px;
   z-index: 50; /* au-dessus du sidebar */
 }
@@ -111,28 +132,34 @@ header {
   gap: 12px;
   width: 100%;
   padding: 14px 20px;
-  color: #d1d5db; /* gray-300 */
+  color: #d1d5db; 
   text-decoration: none;
   font-size: 20px;
   transition: all 0.25s ease;
 }
 
-/* Hover */
-/* .sidebar-link:hover {
-  background: transparent;
-  color: #ffffff;
-  font-weight: 600;
-  width: 350px;
-  margin-left: -20px; 
-} */
+
 
 /* Lien actif */
 .sidebar-link.active {
-  background-color: rgb(239, 235, 235);
-  color: #494C4F;
-  width: 332px;
-  margin-left: -10px;
+  background-color: rgb(239, 235, 235) !important;
+  color: #494C4F !important;
+  width: 332px !important;
+  margin-left: -10px !important;
 }
+/* Lien actif */
+.sidebar-link.active {
+  background-color: whitesmoke !important; /* Fond clair */
+  color: #494C4F !important;         /* Texte gris foncé */
+  width: 336px !important;                           /* Légèrement plus large */
+  margin-left: -10px !important;                     /* Décalage à gauche */
+}
+
+/* Hover pour liens inactifs */
+.sidebar-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
 
 
 
