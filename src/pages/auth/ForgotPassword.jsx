@@ -120,7 +120,7 @@
 
 // export default ForgotPassword;
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -219,9 +219,9 @@ const ForgotPassword = () => {
 
         <div className="mt-5 text-center text-sm text-gray-400 space-y-1">
           <p>
-            <a href="/login" className="text-yellow-400 hover:underline">
+            <Link to="/login" className="text-yellow-400 hover:underline">
               Retour à la connexion
-            </a>
+            </Link>
           </p>
         </div>
       </div>
@@ -230,4 +230,3 @@ const ForgotPassword = () => {
 };
 
 export default ForgotPassword;
-

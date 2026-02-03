@@ -188,7 +188,7 @@
 
 
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaHotel } from "react-icons/fa";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -351,9 +351,9 @@ const Signup = () => {
         <div className="mt-5 text-center text-sm text-white space-y-1">
           <p>
             Vous avez déjà un compte ?{" "}
-            <a href="/login" className="text-yellow-400 hover:underline">
+            <Link to="/login" className="text-yellow-400 hover:underline">
               Se connecter
-            </a>
+            </Link>
           </p>
         </div>
       </div>
